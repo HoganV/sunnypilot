@@ -130,8 +130,18 @@ class CarInterface(CarInterfaceBase):
         ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.8], [0.24]]
 
     elif candidate == CAR.HONDA_ACCORD_11G:
-      ret.lateralParams.torqueBP, ret.lateralParams.torqueV = [[0, 4096], [0, 4096]]
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.2], [0.18]]
+      ret.lateralParams.torqueBP, ret.lateralParams.torqueV = [[0, 12288], [0, 12288]]
+      #ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.2], [0.18]] Original tune by Hamsta on 4096 torque.
+
+      # Tune from HexaDecibel
+      ret.lateralParams.torqueBP = [0, 12288]
+      ret.lateralParams.torqueV = [0, 12288]
+
+      ret.lateralTuning.pid.kpBP = [0.0, 10.0, 20.0]
+      ret.lateralTuning.pid.kpV = [0.05, 0.10, 0.18]
+
+      ret.lateralTuning.pid.kiBP = [0.0, 10.0, 20.0]
+      ret.lateralTuning.pid.kiV = [0.03, 0.08, 0.14]
 
     elif candidate == CAR.HONDA_ACCORD:
       ret.lateralParams.torqueBP, ret.lateralParams.torqueV = [[0, 4096], [0, 4096]]  # TODO: determine if there is a dead zone at the top end
